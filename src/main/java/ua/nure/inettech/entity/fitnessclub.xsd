@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://inettech.nure.ua"
+            xmlns="http://inettech.nure.ua"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+
+    <!--- Фитнес клуб -->
+    <xsd:element name="fitnessClub">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="Id">
+                    <xsd:sequence>
+                        <xsd:element name="clubName" type="xsd:string"/>
+                        <xsd:element name="clubAddress" type="xsd:string"/>
+                        <xsd:element name="clubStartWorkTime" type="xsd:time"/>
+                        <xsd:element name="clubEndWorkTime" type="xsd:time"/>
+                        <xsd:element name="clubEmail" type="xsd:string"/>
+                        <xsd:element name="clubInformation" type="xsd:string"/>
+                        <xsd:element ref="phones"/>
+                        <xsd:element ref="subscriptions"/>
+                        <xsd:element ref="users"/>
+                        <xsd:element ref="trainers"/>
+                        <xsd:element ref="gyms"/>
+                        <xsd:element ref="orders"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--- Абонименты -->
+    <xsd:element name="subscriptions">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="subscription" type="subscription" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--- Абонимент -->
+    <xsd:complexType name="subscription">
+        <xsd:complexContent>
+            <xsd:extension base="Id">
+                <xsd:sequence>
+                    <xsd:element name="subscriptionName" type="xsd:string"/>
+                    <xsd:element name="subscriptionPrice" type="xsd:decimal"/>
+                    <xsd:element name="subscriptionCountVisits" type="xsd:positiveInteger"/>
+                    <xsd:element ref="gyms"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!--- Пользователи -->
+    <xsd:element name="users">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="user" type="user" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--- Пользователь -->
+    <xsd:complexType name="user">
+        <xsd:complexContent>
+            <xsd:extension base="Id">
+                <xsd:sequence>
+                    <xsd:element name="userName" type="xsd:string"/>
+                    <xsd:element name="userLastName" type="xsd:string"/>
+                    <xsd:element name="userBirthdayDate" type="xsd:date"/>
+                    <xsd:element name="userInformation" type="xsd:string"/>
+                    <xsd:element ref="phones"/>
+                    <xsd:element ref="order"/>
+                    <xsd:element ref="trainer" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!--- Тренера -->
+    <xsd:element name="trainers">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="trainer" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--- Тренер -->
+    <xsd:element name="trainer">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="Id">
+                    <xsd:sequence>
+                        <xsd:element name="trainerName" type="xsd:string"/>
+                        <xsd:element name="trainerLastName" type="xsd:string"/>
+                        <xsd:element name="trainerExperienceYear" type="xsd:positiveInteger"/>
+                        <xsd:element name="trainerInformation" type="xsd:string"/>
+                        <xsd:element ref="phones"/>
+                        <xsd:element name="gym" type="gym"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--- Залы -->
+    <xsd:element name="gyms">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="gym" type="gym" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--- Зал -->
+    <xsd:complexType name="gym">
+        <xsd:complexContent>
+            <xsd:extension base="Id">
+                <xsd:sequence>
+                    <xsd:element name="gymName" type="xsd:string"/>
+                    <xsd:element name="gymMaximumUser" type="xsd:positiveInteger" minOccurs="0"/>
+                    <xsd:element name="gymInformation" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!--- Телефонные номера -->
+    <xsd:element name="phones">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="phone" type="xsd:string" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--- Заказы абониментов пользователей -->
+    <xsd:element name="orders">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="order" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--- Заказ абонимента пользователя -->
+    <xsd:element name="order">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="Id">
+                    <xsd:sequence>
+                        <xsd:element name="orderSubscription" type="subscription"/>
+                        <xsd:element name="orderStartDateSubscription" type="xsd:date"/>
+                        <xsd:element name="orderEndDateSubscription" type="xsd:date"/>
+                        <xsd:element name="orderStatus" type="orderStatus"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--- Статусы заказов абониментов -->
+    <xsd:element name="orderStatus" type="orderStatus"/>
+    <xsd:simpleType name="orderStatus">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Отменен"/>
+            <xsd:enumeration value="Принят"/>
+            <xsd:enumeration value="Активен"/>
+            <xsd:enumeration value="Срок истек"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!--- Идентифиткатор сущностей -->
+    <xsd:complexType name="Id">
+        <xsd:attribute name="id" type="xsd:int" use="required"/>
+    </xsd:complexType>
+
+</xsd:schema>
