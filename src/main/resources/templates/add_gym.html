@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление нового зала</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.2/css/bootstrap.min.css}"/>
+    <style>
+        body {
+            background-color: rgba(154, 152, 149, 0.69);
+        }
+    </style>
+</head>
+<body>
+<div th:replace="/includes/navbar :: navbar"></div>
+<form method="post" class="container-xl">
+    <div class="form-group" style="margin-top: 10px;">
+        <h4>Добавление нового зала для фитнес-клуба</h4>
+        <label for="exampleInputId">Id</label>
+        <input type="name" name="id" class="form-control text-white bg-dark" id="exampleInputId" required>
+        <label for="exampleInputName">Название зала</label>
+        <input type="name" name="name" class="form-control text-white bg-dark" id="exampleInputName" required>
+        <label for="exampleInputMaximumUser">Максимальное кол-во посетителей</label>
+        <input type="name" name="maxUsers" class="form-control text-white bg-dark" id="exampleInputMaximumUser" required>
+        <label for="exampleInputInformation">Информация о зале</label>
+        <input type="name" name="information" class="form-control text-white bg-dark" id="exampleInputInformation" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+</body>
+</html>

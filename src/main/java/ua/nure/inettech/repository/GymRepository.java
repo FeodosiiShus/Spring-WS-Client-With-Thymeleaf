@@ -4,7 +4,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 import org.springframework.ws.client.core.WebServiceTemplate;
+import ua.nure.inettech.entity.Gym;
 import ua.nure.inettech.entity.Gyms;
+import ua.nure.inettech.entity.User;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
@@ -43,5 +45,25 @@ public class GymRepository extends WebServiceGatewaySupport {
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         Gyms gymList = (Gyms) unmarshaller.unmarshal(new File("src/main/resources/xmlfiles/find_gym.xml"));
         return gymList;
+    }
+
+    public Gyms addGym(Gym gym) throws Throwable{
+        StreamSource source = new StreamSource(new StringReader(addGymSettings(gym)));
+        StreamResult result = new StreamResult(new File("src/main/resources/xmlfiles/add_gym.xml"));
+        webServiceTemplate.sendSourceAndReceiveToResult("http://localhost:80/ws/fitnessclub", source, new SoapActionCallback("http://inettech.nure.ua/Gyms"), result);
+        jaxbContext = JAXBContext.newInstance(Gyms.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        Gyms gymList = (Gyms) unmarshaller.unmarshal(new File("src/main/resources/xmlfiles/add_gym.xml"));
+        return gymList;
+    }
+
+    public String addGymSettings(Gym gym){
+        StringBuilder str = new StringBuilder();
+        str.append("<AddGym id=\"+"+gym.getId()+"+\" xmlns=\"http://inettech.nure.ua\">" +
+                "<gymName>"+gym.getGymName()+"</gymName>" +
+                "<gymMaximumUser>"+gym.getGymMaximumUser()+"</gymMaximumUser>" +
+                "<gymInformation>"+ gym.getGymInformation() +"</gymInformation>" +
+                "</AddGym>");
+        return str.toString();
     }
 }
