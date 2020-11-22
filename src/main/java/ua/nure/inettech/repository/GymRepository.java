@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 import org.springframework.ws.client.core.WebServiceTemplate;
-import ua.nure.inettech.entity.Gym;
 import ua.nure.inettech.entity.Gyms;
 
 import javax.xml.bind.JAXBContext;
@@ -13,8 +12,6 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class GymRepository extends WebServiceGatewaySupport {
