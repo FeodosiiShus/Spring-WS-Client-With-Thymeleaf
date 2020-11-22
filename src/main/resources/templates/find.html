@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск по названию зала</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.2/css/bootstrap.min.css}"/>
+    <style>
+        body {
+            background-color: rgba(154, 152, 149, 0.69);
+        }
+    </style>
+</head>
+<body>
+<div th:replace="/includes/navbar :: navbar"></div>
+<form method="post" class="container-xl">
+    <div class="form-group" style="margin-top: 10px;">
+        <h4 for="exampleInputName1">Поиск зала по названию</h4>
+        <input type="name" name="name" class="form-control text-white bg-dark" id="exampleInputName1" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+</body>
+</html>

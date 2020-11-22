@@ -16,6 +16,10 @@ import java.io.StringReader;
 @Component
 public class GymRepository extends WebServiceGatewaySupport {
     private static final String MESSAGE_GET_ALL_GYMS = "<GymList xmlns=\"http://inettech.nure.ua\"></GymList>";
+    private static final String MESSAGE_GYM_NAME_START =
+            "<Gyms xmlns=\"http://inettech.nure.ua\">" +
+                    "<gymName>";
+    private static final String MESSAGE_GYM_NAME_END = "</gymName>" + "</Gyms>";
 
     private final WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
 
@@ -28,6 +32,16 @@ public class GymRepository extends WebServiceGatewaySupport {
         jaxbContext = JAXBContext.newInstance(Gyms.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         Gyms gymList = (Gyms) unmarshaller.unmarshal(new File("src/main/resources/xmlfiles/all_gym.xml"));
+        return gymList;
+    }
+
+    public Gyms findGymByName(String name) throws Throwable{
+        StreamSource source = new StreamSource(new StringReader(MESSAGE_GYM_NAME_START+name+MESSAGE_GYM_NAME_END));
+        StreamResult result = new StreamResult(new File("src/main/resources/xmlfiles/find_gym.xml"));
+        webServiceTemplate.sendSourceAndReceiveToResult("http://localhost:80/ws/fitnessclub", source, new SoapActionCallback("http://inettech.nure.ua/Gyms"), result);
+        jaxbContext = JAXBContext.newInstance(Gyms.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        Gyms gymList = (Gyms) unmarshaller.unmarshal(new File("src/main/resources/xmlfiles/find_gym.xml"));
         return gymList;
     }
 }

@@ -28,7 +28,7 @@ public class SubscriptionRepository extends WebServiceGatewaySupport {
     public Subscriptions allSubscriptions() throws Throwable{
         StreamSource source = new StreamSource(new StringReader(MESSAGE_GET_ALL_SUBSCRIPTION));
         StreamResult result = new StreamResult(new File("src/main/resources/xmlfiles/all_subscription.xml"));
-        webServiceTemplate.sendSourceAndReceiveToResult("http://localhost:80/ws/fitnessclub", source, new SoapActionCallback("http://inettech.nure.ua/GymList"), result);
+        webServiceTemplate.sendSourceAndReceiveToResult("http://localhost:80/ws/fitnessclub", source, new SoapActionCallback("http://inettech.nure.ua/SubscriptionList"), result);
         jaxbContext = JAXBContext.newInstance(Subscriptions.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         Subscriptions subscriptionsList = (Subscriptions) unmarshaller.unmarshal(new File("src/main/resources/xmlfiles/all_subscription.xml"));
