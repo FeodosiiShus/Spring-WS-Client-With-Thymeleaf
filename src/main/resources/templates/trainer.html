@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список тренеров</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.2/css/bootstrap.min.css}"/>
+    <style>
+        body {
+            background-color: rgba(154, 152, 149, 0.69);
+        }
+    </style>
+</head>
+<body>
+<div th:replace="/includes/navbar :: navbar"></div>
+<div class="container-fluid">
+    <table class="table table-striped table-dark" style="border-radius: 7px; margin-top: 10px;">
+        <thead class="thead">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Опыт в годах</th>
+            <th scope="col">Информация о тренере</th>
+            <th scope="col">Телефонные номера</th>
+            <th scope="col">Зал тренера</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="trainer : ${trainers.trainer}">
+            <tr>
+                <td th:text="${trainer.getId()}"/>
+                <td th:text="${trainer.getTrainerName()}"/>
+                <td th:text="${trainer.getTrainerLastName()}"/>
+                <td th:text="${trainer.getTrainerExperienceYear()}"/>
+                <td th:text="${trainer.getTrainerInformation()}"/>
+                <td>
+                    <ul th:each="phones : ${trainer.getPhones().getPhone()}"
+                        style="list-style-type: none; margin-left: 0px; padding-left: 0px;">
+                        <li><p style="display:inline" th:text="${phones}"/></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul style="list-style-type: none; margin-left: 0px; padding-left: 0px;">
+                        <li>Название зала: <p style="display:inline" th:text="${trainer.getGym().getGymName()}"/></li>
+                        <li>Максимальное кол-во посетителей: <p style="display:inline" th:text="${trainer.getGym().getGymMaximumUser()}"/></li>
+                        <li>Информацие о зале: <p style="display:inline" th:text="${trainer.getGym().getGymInformation()}"/></li>
+                    </ul>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+</body>
+</html>
