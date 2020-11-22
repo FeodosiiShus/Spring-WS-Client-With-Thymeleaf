@@ -118,9 +118,8 @@ public class Gym
 
     @Override
     public String toString() {
-        return "Id = " + id + ", "+
-                "gymName = " + gymName +", "+
-                "gymMaximumUser= " + gymMaximumUser +", "+
-                "gymInformation= " + gymInformation;
+        return "Название зала = " + gymName +", "+
+                "Максимальное кол-во посетителей = " + gymMaximumUser +", "+
+                "Информация о зале = " + gymInformation;
     }
 }

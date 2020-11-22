@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Main page</title>
+    <title>Главная</title>
     <link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.2/css/bootstrap.min.css}"/>
     <style>
         body{
@@ -27,7 +27,7 @@
             <div class="card-body">
                 <h5 class="card-title">Список абонементов фитнес-клуба</h5>
                 <p class="card-text">Вы увидите список доступных абонементов фитнес-клуба.</p>
-                <a href="#" class="btn btn-primary">Перейти на страницу</a>
+                <a th:href="@{/subscriptions}" class="btn btn-primary">Перейти на страницу</a>
             </div>
         </div>
     </div>

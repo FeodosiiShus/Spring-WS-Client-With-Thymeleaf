@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Абонементы фитнес-клуба</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.2/css/bootstrap.min.css}"/>
+    <style>
+        body {
+            background-color: rgba(154, 152, 149, 0.69);
+        }
+    </style>
+</head>
+<body>
+<div th:replace="/includes/navbar :: navbar"></div>
+<div class="container-fluid">
+    <table class="table table-striped table-dark" style="padding: 10px; margin: 10px; border-radius: 7px;">
+        <thead class="thead">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название</th>
+            <th scope="col">Цена абонемента</th>
+            <th scope="col">Количество посещений зала</th>
+            <th scope="col">Доступные залы по абонементу</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="sub : ${subscriptions.subscription}">
+            <tr>
+                <td th:text="${sub.getId()}"/>
+                <td th:text="${sub.getSubscriptionName()}"/>
+                <td th:text="${sub.getSubscriptionPrice()}"/>
+                <td th:text="${sub.getSubscriptionCountVisits()}"/>
+                <td>
+                    <ul th:each="gyms : ${sub.getGyms().getGym()}" style="list-style-type: none;">
+                        <li>Название зала: <p style="display: inline" th:text="${gyms.getGymName()}" /></li>
+                        <li>Максимальное кол-во посетителей: <p style="display: inline" th:text="${gyms.getGymMaximumUser()}" /></li>
+                        <li>Информация о зале: <p style="display: inline" th:text="${gyms.getGymInformation()}" /></li>
+                    </ul>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+</body>
+</html>
