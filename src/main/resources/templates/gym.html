@@ -6,7 +6,26 @@
     <link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.2/css/bootstrap.min.css}"/>
 </head>
 <body>
-<h1>Hello</h1>
+<div class="container-xl">
+    <table class="table table-striped table-dark">
+        <thead class="thead">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Information</th>
+            <th scope="col">Maximum user</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="gym: ${gyms.gym}">
+            <td th:text="${gym.getId()}" />
+            <td th:text="${gym.getGymName()}" />
+            <td th:text="${gym.getGymInformation()}" />
+            <td th:text="${gym.getGymMaximumUser()}" />
+        </tr>
+        </tbody>
+    </table>
+</div>
 <script type="text/javascript" th:src="@{webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
 </body>
 </html>
