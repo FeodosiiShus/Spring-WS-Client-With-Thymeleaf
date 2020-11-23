@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список клиентов</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.2/css/bootstrap.min.css}"/>
+    <style>
+        body {
+            background-color: rgba(154, 152, 149, 0.69);
+        }
+    </style>
+</head>
+<body>
+<div th:replace="/includes/navbar :: navbar"></div>
+<div class="container-fluid">
+    <table class="table table-striped table-dark" style="border-radius: 5px; margin-top: 10px;">
+        <thead class="thead">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">День рождения</th>
+            <th scope="col">Информация о клиенте</th>
+            <th scope="col">Мобильные телефоны</th>
+            <th scope="col">Заказ абонемента</th>
+            <th scope="col">Абонемент клиента</th>
+            <th scope="col">Доступные залы по абонементу</th>
+            <th scope="col">Информация о тренере</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="user: ${users?.user}">
+            <tr>
+                <td th:text="${user.getId()}"/>
+                <td th:text="${user.getUserName()}"/>
+                <td th:text="${user.getUserLastName()}"/>
+                <td th:text="${user.getUserBirthdayDate()}"/>
+                <td th:text="${user.getUserInformation()}"/>
+                <td>
+                    <ul th:each="phones : ${user.getPhones().getPhone()}"
+                        style="list-style-type: none; margin-left: 0px; padding-left: 0px;">
+                        <li><p style="display:inline" th:text="${phones}"/></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul style="list-style-type: none; margin-left: 0px; padding-left: 0px;">
+                        <li>Id заказа: <p style="display: inline" th:text="${user.getOrder().getId()}"/></li>
+                        <li>Статус заказа: <p style="display: inline" th:text="${user.getOrder().getOrderStatus()}"/>
+                        </li>
+                        <li>Дата начала заказа: <p style="display: inline"
+                                                   th:text="${user.getOrder().getOrderStartDateSubscription()}"/></li>
+                        <li>Дата окончания заказа: <p style="display: inline"
+                                                      th:text="${user.getOrder().getOrderEndDateSubscription()}"/></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul style="list-style-type: none; margin-left: 0px; padding-left: 0px;">
+                        <li>Id абонемента: <p style="display: inline"
+                                              th:text="${user.getOrder().getOrderSubscription().getId()}"/></li>
+                        <li>Название абонемента: <p style="display: inline"
+                                                    th:text="${user.getOrder().getOrderSubscription().getSubscriptionName()}"/>
+                        </li>
+                        <li>Цена за абонемент: <p style="display: inline"
+                                                  th:text="${user.getOrder().getOrderSubscription().getSubscriptionPrice()}"/>
+                        </li>
+                        <li>Количество посещений: <p style="display: inline"
+                                                     th:text="${user.getOrder().getOrderSubscription().getSubscriptionCountVisits()}"/>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul th:each="gym: ${user.order.orderSubscription.getGyms().getGym()}" style="list-style-type: none; margin-left: 0px; padding-left: 0px;">
+                        <li>Id зала: <p style="display: inline" th:text="${gym.getId()}"/></li>
+                        <li>Название зала: <p style="display: inline" th:text="${gym.getGymName()}"/></li>
+                        <li>Максимальное кол-во посетителей: <p style="display: inline" th:text="${gym.getGymMaximumUser()}"/></li>
+                        <li>Информация о зале: <p style="display: inline" th:text="${gym.getGymInformation()}"/></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul style="list-style-type: none; margin-left: 0px; padding-left: 0px;">
+                        <li>Имя тренера: <p style="display: inline" th:text="${user?.getTrainer()?.getTrainerName()} ?: '(нет данных)'"/></li>
+                        <li>Фамилия тренера: <p style="display: inline" th:text="${user?.getTrainer()?.getTrainerLastName()} ?: '(нет данных)'"/></li>
+                        <li>Информация о тренере: <p style="display: inline" th:text="${user?.getTrainer()?.getTrainerInformation()} ?: '(нет данных)'"/></li>
+                        <li>Опыт работы в годах: <p style="display: inline" th:text="${user?.getTrainer()?.getTrainerExperienceYear()} ?: '(нет данных)'"/></li>
+                    </ul>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+</body>
+</html>
