@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление нового клиента</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.2/css/bootstrap.min.css}"/>
+    <style>
+        body {
+            background-color: rgba(154, 152, 149, 0.69);
+        }
+    </style>
+</head>
+<body>
+<div th:replace="/includes/navbar :: navbar"></div>
+<form method="post" class="container-xl" style="margin-bottom: 20px;">
+    <div class="form-group" style="margin-top: 10px;">
+        <h4>Добавление нового клиента для фитнес-клуба</h4>
+        <h5 style="margin-top: 10px;">Информация о клиенте</h5>
+        <label for="exampleInputId">Id клиента</label>
+        <input type="name" name="userId" class="form-control text-white bg-dark" id="exampleInputId" required>
+
+        <label for="exampleInputName">Имя клиента</label>
+        <input type="name" name="userName" class="form-control text-white bg-dark" id="exampleInputName" required>
+
+        <label for="exampleInputLastName">Фамилия клиента</label>
+        <input type="name" name="userLastName" class="form-control text-white bg-dark" id="exampleInputLastName" required>
+
+        <label for="exampleInputUserInformation">Информация о клиенте</label>
+        <input type="name" name="userInformation" class="form-control text-white bg-dark" id="exampleInputUserInformation" required>
+
+        <label for="exampleInputUserBirthday">День рождения клиента</label>
+        <input type="name" name="userBirthday" class="form-control text-white bg-dark" id="exampleInputUserBirthday" required>
+
+        <label for="exampleInputPhone">Мобильный номер</label>
+        <input type="name" name="userPhone" class="form-control text-white bg-dark" id="exampleInputPhone" required>
+
+        <h5 style="margin-top: 10px;">Информация о заказе клиента</h5>
+        <label for="exampleInputOrderId">Id заказа</label>
+        <input type="name" name="orderId" class="form-control text-white bg-dark" id="exampleInputOrderId" required>
+
+        <label for="exampleInputOrderStatus">Статус заказа</label>
+        <input type="name" name="orderStatus" class="form-control text-white bg-dark" id="exampleInputOrderStatus" required>
+
+        <label for="exampleInputOrderStart">Дата начала заказа</label>
+        <input type="name" name="orderStart" class="form-control text-white bg-dark" id="exampleInputOrderStart" required>
+
+        <label for="exampleInputOrderEnd">Дата окончания заказа</label>
+        <input type="name" name="orderEnd" class="form-control text-white bg-dark" id="exampleInputOrderEnd" required>
+
+        <h5 style="margin-top: 10px;">Информация о абонементе клиента</h5>
+        <label for="exampleInputSubsId">Id абонемента</label>
+        <input type="name" name="subsId" class="form-control text-white bg-dark" id="exampleInputSubsId" required>
+
+        <label for="exampleInputSubsName">Название абонемента</label>
+        <input type="name" name="subsName" class="form-control text-white bg-dark" id="exampleInputSubsName" required>
+
+        <label for="exampleInputSubsPrice">Цена абонемента</label>
+        <input type="name" name="subsPrice" class="form-control text-white bg-dark" id="exampleInputSubsPrice" required>
+
+        <label for="exampleInputSubsVisit">Количество посещений</label>
+        <input type="name" name="subsVisit" class="form-control text-white bg-dark" id="exampleInputSubsVisit" required>
+
+        <h5 style="margin-top: 10px;">Информация о выбранном зале клиента</h5>
+        <label for="exampleInputGymId">Id зала</label>
+        <input type="name" name="gymId" class="form-control text-white bg-dark" id="exampleInputGymId" required>
+
+        <label for="exampleInputGymName">Название зала</label>
+        <input type="name" name="gymName" class="form-control text-white bg-dark" id="exampleInputGymName" required>
+
+        <label for="exampleInputGymMaxUser">Максимальное количество посетителей зала</label>
+        <input type="name" name="gymMaxUser" class="form-control text-white bg-dark" id="exampleInputGymMaxUser" required>
+
+        <label for="exampleInputGymInformation">Информация о зале</label>
+        <input type="name" name="gymInformation" class="form-control text-white bg-dark" id="exampleInputGymInformation" required>
+
+        <h5 style="margin-top: 10px;">Информация о выбранном тренере</h5>
+        <label for="exampleInputTrainerId">Id тренера</label>
+        <input type="name" name="trainerId" class="form-control text-white bg-dark" id="exampleInputTrainerId">
+
+        <label for="exampleInputTrainerName">Имя тренера</label>
+        <input type="name" name="trainerName" class="form-control text-white bg-dark" id="exampleInputTrainerName">
+
+        <label for="exampleInputTrainerLastName">Фамилия тренера</label>
+        <input type="name" name="trainerLastName" class="form-control text-white bg-dark" id="exampleInputTrainerLastName">
+
+        <label for="exampleInputTrainerExperience">Опыт тренера в годах</label>
+        <input type="name" name="trainerExperience" class="form-control text-white bg-dark" id="exampleInputTrainerExperience">
+
+        <label for="exampleInputTrainerInformation">Информация о тренере</label>
+        <input type="name" name="trainerInformation" class="form-control text-white bg-dark" id="exampleInputTrainerInformation">
+
+        <label for="exampleInputTrainerPhone">Мобильный телефон тренера</label>
+        <input type="name" name="trainerPhone" class="form-control text-white bg-dark" id="exampleInputTrainerPhone">
+    </div>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+</body>
+</html>

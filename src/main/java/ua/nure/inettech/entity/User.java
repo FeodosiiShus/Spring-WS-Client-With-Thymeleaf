@@ -50,7 +50,7 @@ public class User
     protected String userLastName;
     @XmlElement(namespace = "http://inettech.nure.ua", required = true)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar userBirthdayDate;
+    protected String userBirthdayDate;
     @XmlElement(namespace = "http://inettech.nure.ua", required = true)
     protected String userInformation;
     @XmlElement(namespace = "http://inettech.nure.ua", required = true)
@@ -116,19 +116,19 @@ public class User
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getUserBirthdayDate() {
+    public String getUserBirthdayDate() {
         return userBirthdayDate;
     }
 
     /**
      * Sets the value of the userBirthdayDate property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setUserBirthdayDate(XMLGregorianCalendar value) {
+    public void setUserBirthdayDate(String value) {
         this.userBirthdayDate = value;
     }
 

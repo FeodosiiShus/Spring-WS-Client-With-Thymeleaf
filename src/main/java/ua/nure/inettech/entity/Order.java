@@ -43,10 +43,10 @@ public class Order
     protected Subscription orderSubscription;
     @XmlElement(namespace = "http://inettech.nure.ua", required = true)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar orderStartDateSubscription;
+    protected String orderStartDateSubscription;
     @XmlElement(namespace = "http://inettech.nure.ua", required = true)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar orderEndDateSubscription;
+    protected String orderEndDateSubscription;
     @XmlElement(namespace = "http://inettech.nure.ua", required = true)
     @XmlSchemaType(name = "string")
     protected OrderStatus orderStatus;
@@ -83,7 +83,7 @@ public class Order
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getOrderStartDateSubscription() {
+    public String getOrderStartDateSubscription() {
         return orderStartDateSubscription;
     }
 
@@ -95,7 +95,7 @@ public class Order
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setOrderStartDateSubscription(XMLGregorianCalendar value) {
+    public void setOrderStartDateSubscription(String value) {
         this.orderStartDateSubscription = value;
     }
 
@@ -107,7 +107,7 @@ public class Order
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getOrderEndDateSubscription() {
+    public String getOrderEndDateSubscription() {
         return orderEndDateSubscription;
     }
 
@@ -119,7 +119,7 @@ public class Order
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setOrderEndDateSubscription(XMLGregorianCalendar value) {
+    public void setOrderEndDateSubscription(String value) {
         this.orderEndDateSubscription = value;
     }
 
