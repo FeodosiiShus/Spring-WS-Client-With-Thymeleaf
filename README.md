@@ -1,0 +1,3 @@
+This project is third part of my course in KNURE internet-technology. So I created pages which request queries to server, which I developed in first part and this pages contains response of this server.<br/> 
+Link to first project - <a href="https://github.com/FeodosiiShus/Spring-WS-Fitness-Club">Fitness Club Spring-WS</a><br/>
+Link to second part of this project - <a href="https://github.com/FeodosiiShus/Spring-WS-Client">Spring WS Client</a>
